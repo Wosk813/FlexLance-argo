@@ -1,0 +1,10 @@
+resources:
+ - deployment.yaml
+ - service.yaml
+
+commonLabels:
+  app: flexlance-app
+
+namePrefix: kustomize-
+
+nameSuffix: -v1

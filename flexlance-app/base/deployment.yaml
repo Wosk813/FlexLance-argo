@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flexlance-app
+  labels:
+    app: flexlance-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flexlance-app
+  template:
+    metadata:
+      labels:
+        app: flexlance-app
+    spec:
+      containers:
+        - name: backend
+          image: wosk813/flexlance-api:latest
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+        - name: frontend
+          image: wosk813/flexlance-frontend:latest
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              cpu: "300m"
+              memory: "384Mi"
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
